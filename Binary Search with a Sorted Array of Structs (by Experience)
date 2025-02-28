@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Developer {
+    int experience; // in years
+    string name;
+};
+
+int binarySearchDeveloperByExperience(Developer arr[], int size, int targetExperience) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].experience == targetExperience) return mid;
+        if (arr[mid].experience < targetExperience) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Developer arr[] = { {1, "Alice"}, {2, "Bob"}, {3, "Charlie"}, {4, "David"}, {5, "Eve"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int targetExperience = 3;
+    int result = binarySearchDeveloperByExperience(arr, size, targetExperience);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

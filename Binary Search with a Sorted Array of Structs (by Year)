@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Book {
+    int year; // publication year
+    string title;
+};
+
+int binarySearchBookByYear(Book arr[], int size, int targetYear) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].year == targetYear) return mid;
+        if (arr[mid].year < targetYear) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Book arr[] = { {1994, "The Shawshank Redemption"}, {1999, "Fight Club"}, {2008, "The Dark Knight"}, {2010, "Inception"}, {2014, "Interstellar"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int targetYear = 2008;
+    int result = binarySearchBookByYear(arr, size, targetYear);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Movie {
+    double rating; // out of 10
+    string title;
+};
+
+int binarySearchMovieByRating(Movie arr[], int size, double targetRating) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].rating == targetRating) return mid;
+        if (arr[mid].rating < targetRating) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Movie arr[] = { {8.5, "Inception"}, {9.0, "The Shawshank Redemption"}, {7.5, "The Godfather"}, {8.0, "Pulp Fiction"}, {9.5, "The Dark Knight"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    double targetRating = 8.0;
+    int result = binarySearchMovieByRating(arr, size, targetRating);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

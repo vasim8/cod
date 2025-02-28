@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Animal {
+    double weight; // in kg
+    string name;
+};
+
+int binarySearchAnimalByWeight(Animal arr[], int size, double targetWeight) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].weight == targetWeight) return mid;
+        if (arr[mid].weight < targetWeight) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Animal arr[] = { {5.5, "Cat"}, {10.0, "Dog"}, {20.0, "Sheep"}, {50.0, "Goat"}, {100.0, "Cow"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    double targetWeight = 20.0;
+    int result = binarySearchAnimalByWeight(arr, size, targetWeight);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

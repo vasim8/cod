@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Song {
+    int length; // in seconds
+    string title;
+};
+
+int binarySearchSongByLength(Song arr[], int size, int targetLength) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].length == targetLength) return mid;
+        if (arr[mid].length < targetLength) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Song arr[] = { {210, "Song A"}, {180, "Song B"}, {240, "Song C"}, {300, "Song D"}, {150, "Song E"} };
+ int size = sizeof(arr) / sizeof(arr[0]);
+    int targetLength = 240;
+    int result = binarySearchSongByLength(arr, size, targetLength);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

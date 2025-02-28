@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Employee {
+    double salary;
+    string name;
+};
+
+int binarySearchEmployeeBySalary(Employee arr[], int size, double targetSalary) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].salary == targetSalary) return mid;
+        if (arr[mid].salary < targetSalary) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Employee arr[] = { {30000, "Alice"}, {40000, "Bob"}, {50000, "Charlie"}, {60000, "David"}, {70000, "Eve"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    double targetSalary = 50000;
+    int result = binarySearchEmployeeBySalary(arr, size, targetSalary);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

@@ -17,3 +17,12 @@ int binarySearchPersonByHeight(Person arr[], int size, int targetHeight) {
     }
     return -1;
 }
+
+int main() {
+    Person arr[] = { {160, "Alice"}, {170, "Bob"}, {180, "Charlie"}, {190, "David"}, {200, "Eve"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int targetHeight = 180;
+    int result = binarySearchPersonByHeight(arr, size, targetHeight);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}

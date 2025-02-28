@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Film {
+    string director;
+    string title;
+};
+
+int binarySearchFilmByDirector(Film arr[], int size, string targetDirector) {
+    int left = 0, right = size - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid].director == targetDirector) return mid;
+        if (arr[mid].director < targetDirector) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    Film arr[] = { {"Christopher Nolan", "Inception"}, {"Quentin Tarantino", "Pulp Fiction"}, {"Steven Spielberg", "Jurassic Park"}, {"Martin Scorsese", "Goodfellas"}, {"James Cameron", "Titanic"} };
+    int size = sizeof(arr) / sizeof(arr[0]);
+    string targetDirector = "Steven Spielberg";
+    int result = binarySearchFilmByDirector(arr, size, targetDirector);
+    cout << "Element found at index: " << result << endl;
+    return 0;
+}
